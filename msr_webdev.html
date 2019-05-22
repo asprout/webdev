@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>	
+var condA = Math.random() < 0.5;
+$(document).ready(function(){
+	console.log("page loaded, group a:", condA)
+	$("#b1").click(function(){
+		if ($("#consent").is(":checked") == false){
+			alert("You must agree to the consent form to continue.");
+		} else {
+			$("#p1").hide();
+			if (condA == false){
+				$("#pcond").text("People debate whether startup companies whose founders dropped out of college are more or less likely to become unicorns.");
+			}
+			$("#p2").show();
+		}
+	});
+	$("#b2").click(function(){
+		var unicorns = $("#unicorns").val();
+		if (unicorns.length > 0 && unicorns >= 0 &&  unicorns <= 10000){
+			$("#p2").hide();
+			$("#p3").show();
+		}
+	});
+	$("#b3").click(function(){
+		console.log($("#unicorns").val(), $("#investment").val());
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="p1">
+	<h1>Welcome to our experiment.</h1>
+	<p>This task is part of a research study on decision making. This task should take about 5 minutes. <br>
+	If you agree to participate in this study, click the checkbox below.</p>
+	<input type="checkbox" id="consent"> I agree to this consent form 
+	<br>
+	<button id="b1">Continue</button>
+</div>
+
+<div id="p2" style="display:none;">
+	<h1>Predicting success</h1>
+	<p>A startup is a small, young company that is intended to grow rapidly and to become large and influential. They are typically backed by venture capital (V.C.) firms. The people who create startups are called founders. A "unicorn" is a startup that has achieved a valuation of 1 billion dollars or more. 
+	</p>
+	<p id="pcond">
+	Some people believe that a startup is more likely to become a unicorn if it is founded by someone who has dropped out of college. Here are some examples of unicorns founded by college dropouts: Facebook (Mark Zuckerberg), Twitter (Jack Dorsey), Uber (Travis Kalanick). 
+	</p>
+	<p>
+	In your best estimate, out of the 10,000 V.C. backed companies with founders who dropped out of college, how many do you think became unicorns? 
+	</p>
+	<input type="number" min="0" max="10000" id="unicorns">
+	<br>
+	<button id="b2">Continue</button>
+</div>
+
+
+<div id="p3" style="display:none;">
+	<h1>A Decision</h1>
+	<p> Lastly, we’re going to ask you to make a decision about investing in a startup. 
+	<br>
+	Let’s say you had 100 cents. You may choose to invest all, some, or none of this money in a startup. If the startup becomes a unicorn, you will get back 10 cents for every cent you invest. If the startup does not become a unicorn you will lose the part of the bonus you chose to invest. You will get to keep every cent you do not invest. 
+	<br>
+	All you know about the startup is that it will be a randomly drawn company whose founder was a dropout. 
+	<br>
+	Of the 100 cents I want to invest this much in the startup: 
+
+	0 <input type="range" min="0" max="100" value="50" 
+		class="slider" id="investment"> 100
+	<br>
+	<button id="b3">Submit</button>
+	</p>
+
+</div>
+
+</body>
+</html>
